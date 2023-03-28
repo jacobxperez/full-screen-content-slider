@@ -1,5 +1,7 @@
 # [Full Screen Content Slider](https://jacobxperez.github.io/full-screen-content-slider/)
 
+A Vanilla JavaScript Full Screen Content Slider
+
 ## Getting Started
 
 Start by **[downloading](https://github.com/jacobxperez/full-screen-content-slider/archive/master.zip)** the [repository](https://github.com/jacobxperez/full-screen-content-slider) or by cloning the project:
