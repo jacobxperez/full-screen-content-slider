@@ -17,14 +17,17 @@ const slider = () => {
     
         function cycleItems() {
             const currSlide = slides[currIndex]
-    
+        
             slides.forEach((slide) => {
-                slide.style.display = 'none'
+                slide.style.visibility = 'hidden'
                 slide.style.zIndex = 1
+                slide.style.opacity = 0 // added for fade effect
             })
-    
-            currSlide.style.display = 'block'
+        
+            currSlide.style.visibility = 'visible'
             currSlide.style.zIndex = 5
+            currSlide.style.opacity = 1 // added for fade effect
+            currSlide.style.transition = 'ease-in opacity 1s' // added for fade effect
         }
     
         function changeSlide() {
@@ -74,7 +77,7 @@ const slider = () => {
             }
     
             cycleItems()
-            startSlider((intervalTime = 10000))
+            startSlider((intervalTime = 8000))
         })
     
         const prevSlideBtn = slider.querySelector('.prev-slide')
@@ -87,7 +90,7 @@ const slider = () => {
             }
     
             cycleItems()
-            startSlider((intervalTime = 10000))
+            startSlider((intervalTime = 8000))
         })
     })
 }
