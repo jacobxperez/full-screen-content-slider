@@ -14,40 +14,40 @@ const slider = () => {
         const imgCache = []
         let intervalTime = 5000
         let sliderInterval
-    
-        function cycleItems() {
+
+        const cycleItems = () => {
             const currSlide = slides[currIndex]
-        
+
             slides.forEach((slide) => {
                 slide.style.visibility = 'hidden'
                 slide.style.zIndex = 1
                 slide.style.opacity = 0 // added for fade effect
             })
-        
+
             currSlide.style.visibility = 'visible'
             currSlide.style.zIndex = 5
             currSlide.style.opacity = 1 // added for fade effect
-            currSlide.style.transition = 'ease-in opacity 1s' // added for fade effect
+            currSlide.style.transition = 'all 0.5s ease-in-out 0s' // added for fade effect
         }
-    
-        function changeSlide() {
+
+        const changeSlide = () => {
             currIndex += 1
-    
+
             if (currIndex > totalSlides - 1) {
                 currIndex = 0
             }
-    
+
             cycleItems()
         }
-    
-        function startSlider() {
+
+        const startSlider = () => {
             clearInterval(sliderInterval)
-    
+
             sliderInterval = setInterval(() => {
                 changeSlide()
             }, intervalTime)
         }
-    
+
         ;(function preloader() {
             if (currIndex < totalSlides) {
                 const img = new Image()
@@ -66,29 +66,29 @@ const slider = () => {
                 startSlider()
             }
         })()
-    
+
         const nextSlideBtn = slider.querySelector('.next-slide')
-    
+
         nextSlideBtn.addEventListener('click', () => {
             currIndex += 1
-    
+
             if (currIndex > totalSlides - 1) {
                 currIndex = 0
             }
-    
+
             cycleItems()
             startSlider((intervalTime = 8000))
         })
-    
+
         const prevSlideBtn = slider.querySelector('.prev-slide')
-    
+
         prevSlideBtn.addEventListener('click', () => {
             currIndex -= 1
-    
+
             if (currIndex < 0) {
                 currIndex = totalSlides - 1
             }
-    
+
             cycleItems()
             startSlider((intervalTime = 8000))
         })
