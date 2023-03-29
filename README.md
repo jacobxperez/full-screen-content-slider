@@ -6,7 +6,7 @@ A Vanilla JavaScript Full Screen Content Slider
 
 Start by **[downloading](https://github.com/jacobxperez/full-screen-content-slider/archive/master.zip)** the [repository](https://github.com/jacobxperez/full-screen-content-slider) or by cloning the project:
 
- git clone <https://github.com/jacobxperez/full-screen-content-slider.git>
+    git clone <https://github.com/jacobxperez/full-screen-content-slider.git>
 
 ## Contributing
 
