@@ -74,18 +74,17 @@ const slider = () => {
             startSlider();
         });
 
-        const nextSlideBtn = slider.querySelector('.next-slide');
+        const slideBtnContainer = slider.querySelector('.slider-nav');
 
-        nextSlideBtn.addEventListener('click', () => {
-            changeSlide('next');
-            startSlider(8000);
-        });
-
-        const prevSlideBtn = slider.querySelector('.prev-slide');
-
-        prevSlideBtn.addEventListener('click', () => {
-            changeSlide('prev');
-            startSlider(8000);
+        slideBtnContainer.addEventListener('click', (event) => {
+            const btn = event.target;
+            if (btn.classList.contains('next-slide')) {
+                changeSlide('next');
+                startSlider(8000);
+            } else if (btn.classList.contains('prev-slide')) {
+                changeSlide('prev');
+                startSlider(8000);
+            }
         });
     });
 };
