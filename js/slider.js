@@ -4,14 +4,14 @@
  * Licensed under the Apache License, Version 2.0
  * http://www.apache.org/licenses/LICENSE-2.0
 ------------------------------------------------------------------------------*/
-const slider = () => {
-    const sliders = document.querySelectorAll('.slider')
+const sliders = document.querySelectorAll('.slider')
 
+const slider = () => {
     sliders.forEach((slider) => {
         const slides = slider.querySelectorAll('.slide')
         const totalSlides = slides.length
-        let currIndex = 0
         const imgCache = []
+        let currIndex = 0
         let intervalTime = 5000
         let sliderInterval
 
@@ -48,24 +48,23 @@ const slider = () => {
             }, intervalTime)
         }
 
-        ;(function preloader() {
-            if (currIndex < totalSlides) {
-                const img = new Image()
-                const imgSrc = slides[currIndex]
-                    .querySelector('img')
-                    .getAttribute('src')
-                imgCache[currIndex] = img
-                img.src = imgSrc
-                img.onload = () => {
-                    currIndex += 1
-                    preloader()
-                }
-            } else {
-                currIndex = 0
-                cycleItems()
-                startSlider()
+        const preloadImages = () => {
+            for (const slide of slides) {
+                const imgSrc = slide.querySelector('img').src
+                const imgPromise = new Promise((resolve) => {
+                    const img = new Image()
+                    img.src = imgSrc
+                    img.onload = resolve
+                })
+                imgCache.push(imgPromise)
             }
-        })()
+            return Promise.all(imgCache)
+        }
+
+        preloadImages().then(() => {
+            cycleItems()
+            startSlider()
+        })
 
         const nextSlideBtn = slider.querySelector('.next-slide')
 
