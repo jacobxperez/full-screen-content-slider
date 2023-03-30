@@ -74,6 +74,8 @@ object {
     width: 100%;
     height: 100%;
     cursor: default;
+    object-fit: cover;
+    object-position: center;
 }
 
 .slide-content {
@@ -166,17 +168,5 @@ object {
 
     .next-slide {
         right: 0;
-    }
-}
-
-@media screen and (max-width: 980px) {
-    .slider {
-        max-height: 57.95918367vw;
-    }
-}
-
-@media screen and (min-height: 980px) {
-    .slider {
-        max-height: 57.95918367vw;
     }
 }
