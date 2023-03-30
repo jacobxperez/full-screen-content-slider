@@ -78,7 +78,7 @@ object {
 
 .slide-content {
     position: absolute;
-    bottom: 20%;
+    top: 30%;
     width: 100%;
     text-align: center;
     color: #fff;
