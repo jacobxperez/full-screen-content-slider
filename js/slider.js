@@ -19,15 +19,10 @@ const slider = () => {
             const currSlide = slides[currIndex];
 
             slides.forEach((slide) => {
-                slide.style.visibility = 'hidden';
-                slide.style.zIndex = 1;
-                slide.style.opacity = 0;
+                slide.classList.remove('slide-current');
             });
 
-            currSlide.style.visibility = 'visible';
-            currSlide.style.zIndex = 5;
-            currSlide.style.opacity = 1;
-            currSlide.style.transition = 'all 0.5s ease-in-out 0s';
+            currSlide.classList.add('slide-current');
         };
 
         const changeSlide = (direction) => {
@@ -76,12 +71,12 @@ const slider = () => {
 
         const slideBtnContainer = slider.querySelector('.slider-nav');
 
-        slideBtnContainer.addEventListener('click', (event) => {
-            const btn = event.target;
-            if (btn.classList.contains('next-slide')) {
+        slideBtnContainer.addEventListener('click', (e) => {
+            const target = e.target;
+            if (target.classList.contains('next-slide')) {
                 changeSlide('next');
                 startSlider(8000);
-            } else if (btn.classList.contains('prev-slide')) {
+            } else if (target.classList.contains('prev-slide')) {
                 changeSlide('prev');
                 startSlider(8000);
             }
