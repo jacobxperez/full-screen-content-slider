@@ -7,22 +7,25 @@
 const sliders = document.querySelectorAll('.slider');
 
 const slider = () => {
-    sliders.forEach((slider) => {
+    for (const slider of sliders) {
         const slides = slider.querySelectorAll('.slide');
         const totalSlides = slides.length;
         const imgCache = [];
+        const slideBtnContainer = slider.querySelector('.slider-nav');
+        const intervalTime = parseInt(slider.dataset.intervalTime) || 5000;
         let currIndex = 0;
-        let intervalTime = 5000;
         let sliderInterval;
 
         const cycleItems = () => {
             const currSlide = slides[currIndex];
-
-            slides.forEach((slide) => {
-                slide.classList.remove('slide-current');
+            slides[currIndex].classList.add('slide-current');
+            requestAnimationFrame(() => {
+                slides.forEach((slide) => {
+                    if (slide !== currSlide) {
+                        slide.classList.remove('slide-current');
+                    }
+                });
             });
-
-            currSlide.classList.add('slide-current');
         };
 
         const changeSlide = (direction) => {
@@ -37,18 +40,14 @@ const slider = () => {
                     currIndex = totalSlides - 1;
                 }
             }
-
             cycleItems();
         };
 
         const startSlider = (time) => {
             clearInterval(sliderInterval);
-
-            intervalTime = time || intervalTime;
-
             sliderInterval = setInterval(() => {
                 changeSlide('next');
-            }, intervalTime);
+            }, time || intervalTime);
         };
 
         const preloadImages = () => {
@@ -69,8 +68,6 @@ const slider = () => {
             startSlider();
         });
 
-        const slideBtnContainer = slider.querySelector('.slider-nav');
-
         slideBtnContainer.addEventListener('click', (e) => {
             const target = e.target;
             if (target.classList.contains('next-slide')) {
@@ -81,7 +78,7 @@ const slider = () => {
                 startSlider(8000);
             }
         });
-    });
+    }
 };
 
 slider();
