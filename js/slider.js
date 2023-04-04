@@ -9,6 +9,7 @@ const sliders = document.querySelectorAll('.slider');
 const slider = () => {
     for (const slider of sliders) {
         const slides = slider.querySelectorAll('.slide');
+        const totalImages = slider.querySelectorAll('img');
         const totalSlides = slides.length;
         const imgCache = [];
         const slideBtnContainer = slider.querySelector('.slider-nav');
@@ -51,8 +52,8 @@ const slider = () => {
         };
 
         const preloadImages = () => {
-            for (const slide of slides) {
-                const imgSrc = slide.querySelector('img').src;
+            for (const image of totalImages) {
+                const imgSrc = image.src;
                 const imgPromise = new Promise((resolve) => {
                     const img = new Image();
                     img.src = imgSrc;
