@@ -12,7 +12,7 @@ const slider = () => {
         const totalSlides = slides.length;
         const imgCache = [];
         const slideBtnContainer = slider.querySelector('.slider-nav');
-        const intervalTime = parseInt(slider.dataset.intervalTime) || 5000;
+        let intervalTime = parseInt(slider.dataset.intervalTime) || 5000;
         let currIndex = 0;
         let sliderInterval;
 
@@ -20,11 +20,11 @@ const slider = () => {
             const currSlide = slides[currIndex];
             slides[currIndex].classList.add('slide-current');
             requestAnimationFrame(() => {
-                slides.forEach((slide) => {
+                for (const slide of slides) {
                     if (slide !== currSlide) {
                         slide.classList.remove('slide-current');
                     }
-                });
+                }
             });
         };
 
